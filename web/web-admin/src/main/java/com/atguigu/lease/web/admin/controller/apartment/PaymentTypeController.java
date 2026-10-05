@@ -6,12 +6,11 @@ import com.atguigu.lease.model.entity.PaymentType;
 import com.atguigu.lease.web.admin.service.PaymentTypeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
 
 @Tag(name = "支付方式管理")
 @RequestMapping("/admin/payment")
@@ -30,6 +29,8 @@ public class PaymentTypeController {
     @Operation(summary = "保存或更新支付方式")
     @PostMapping("saveOrUpdate")
     public Result saveOrUpdatePaymentType(@RequestBody PaymentType paymentType) {
+        // 有id执行update 无id执行save
+        paymentTypeService.saveOrUpdate(paymentType);
         return Result.ok();
     }
 
