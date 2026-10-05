@@ -15,6 +15,14 @@ spring:
       minimum-idle: 10 #最小空闲连接数量
       pool-name: SPHHikariPool # 连接池名称
 
+# 配置knife4j（4.x 必须显式开启增强，否则 doc.html 读不到分组和文档信息）
+springdoc:
+  default-flat-param-object: true
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
 #用于打印框架生成的sql语句，便于调试
 mybatis-plus:
   configuration:
