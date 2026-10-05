@@ -1,0 +1,37 @@
+### 编译产物 ###
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### 日志 ###
+*.log
+logs/
+
+### 本地敏感配置 ###
+application-local.yml
+application-dev.yml
+.env
