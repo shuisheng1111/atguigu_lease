@@ -26,6 +26,8 @@ public class BaseEntity implements Serializable {
     private Date updateTime;
 
     @Schema(description = "逻辑删除")
+    // 逻辑删除
+    @TableLogic
     @TableField("is_deleted")
     private Byte isDeleted;
 
