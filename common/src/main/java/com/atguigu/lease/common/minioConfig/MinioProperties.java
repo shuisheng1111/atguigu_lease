@@ -1,8 +1,7 @@
-package com.atguigu.lease.common.MinioConfig;
+package com.atguigu.lease.common.minioConfig;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 @ConfigurationProperties(prefix = "minio")
 @Data

@@ -1,14 +1,11 @@
-package com.atguigu.lease.common.MinioConfig;
+package com.atguigu.lease.common.minioConfig;
 
 import io.minio.MinioClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.security.spec.EdDSAParameterSpec;
 
 @Configuration
 @EnableConfigurationProperties(MinioProperties.class)
