@@ -22,4 +22,5 @@ public class ApartmentFeeValue extends BaseEntity {
     @TableField(value = "fee_value_id")
     private Long feeValueId;
 
+    public ApartmentFeeValue() {}
 }

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Schema(description = "公寓&配套关系")
 @TableName(value = "apartment_facility")
@@ -22,5 +23,6 @@ public class ApartmentFacility extends BaseEntity {
     @TableField(value = "facility_id")
     private Long facilityId;
 
+    public ApartmentFacility() {}
 
 }
