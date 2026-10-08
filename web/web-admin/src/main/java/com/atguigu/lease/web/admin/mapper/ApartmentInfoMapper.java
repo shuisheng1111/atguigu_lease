@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 */
 public interface ApartmentInfoMapper extends BaseMapper<ApartmentInfo> {
 
+    IPage<ApartmentItemVo> pageApartmentItem(Page<ApartmentItemVo> page, ApartmentQueryVo queryVo);
 }
 
 

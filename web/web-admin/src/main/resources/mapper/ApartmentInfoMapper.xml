@@ -4,4 +4,72 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.lease.web.admin.mapper.ApartmentInfoMapper">
 
+    <select id="pageApartmentItem"
+            resultType="com.atguigu.lease.web.admin.vo.apartment.ApartmentItemVo">
+        select apartment_AllInfo.id,
+        apartment_AllInfo.name,
+        apartment_AllInfo.introduction,
+        apartment_AllInfo.district_id,
+        apartment_AllInfo.district_name,
+        apartment_AllInfo.city_id,
+        apartment_AllInfo.city_name,
+        apartment_AllInfo.province_id,
+        apartment_AllInfo.province_name,
+        apartment_AllInfo.address_detail,
+        apartment_AllInfo.latitude,
+        apartment_AllInfo.longitude,
+        apartment_AllInfo.phone,
+        apartment_AllInfo.is_release,
+        ifnull(total_count.tc_cnt,0) total_room_count,
+        ifnull(total_count.tc_cnt,0) - ifnull(checkin_count.cc_cnt,0) free_room_count
+        from (
+        select id,
+        name,
+        introduction,
+        district_id,
+        district_name,
+        city_id,
+        city_name,
+        province_id,
+        province_name,
+        address_detail,
+        latitude,
+        longitude,
+        phone,
+        is_release
+        from apartment_info
+        <where>
+            is_deleted = 0
+            <if test="queryVo.provinceId != null">
+                and province_id = #{queryVo.provinceId}
+            </if>
+            <if test="queryVo.cityId != null">
+                and city_id = #{queryVo.cityId}
+            </if>
+            <if test="queryVo.districtId != null">
+                and district_id = #{queryVo.districtId}
+            </if>
+        </where>
+        ) apartment_AllInfo
+        <!-- 查询房间总数：未删除且已发布 -->
+        left join (
+        select apartment_id,
+        count(*) tc_cnt
+        from atguigu_lease.room_info
+        where is_deleted = 0
+        and is_release = 1
+        group by apartment_id
+        ) total_count
+        on apartment_AllInfo.id = total_count.apartment_id
+        <!-- 查询已租房间数（status 2/5），空闲数 = 总数 - 已租数 -->
+        left join (
+        select apartment_id,
+        count(*) cc_cnt
+        from atguigu_lease.lease_agreement
+        where is_deleted = 0
+        and status in (2, 5)
+        group by apartment_id
+        ) checkin_count
+        on apartment_AllInfo.id = checkin_count.apartment_id
+    </select>
 </mapper>
