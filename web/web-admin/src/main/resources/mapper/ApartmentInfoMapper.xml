@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.lease.web.admin.mapper.ApartmentInfoMapper">
 
+    <!-- TODO: sql最难的一集 多表联查 还能跟着sql语句做左连接 -->
     <select id="pageApartmentItem"
             resultType="com.atguigu.lease.web.admin.vo.apartment.ApartmentItemVo">
         select apartment_AllInfo.id,
